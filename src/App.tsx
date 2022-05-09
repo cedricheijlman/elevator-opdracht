@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import UpAndDown from "./components/UpAndDown";
 
 const App: React.FC = () => {
   // All floors
@@ -15,22 +16,8 @@ const App: React.FC = () => {
 
   // Current floor
   const [currentFloor, setCurrentFloor] = useState<number>(0);
-
-  // Change floor up and down
-  const changeFloor = (floorNum: number, action: string): void => {
-    const oldFloorNum = floorNum;
-    if (action == "up" && floorNum < 5) {
-      setTimeout(() => {
-        setCurrentFloor(oldFloorNum + 1);
-      }, 1000);
-    }
-
-    if (action == "down" && floorNum > 0) {
-      setTimeout(() => {
-        setCurrentFloor(oldFloorNum - 1);
-      }, 1000);
-    }
-  };
+  // Delay Floor Change in seconds
+  const [delayFloor, setDelayFloor] = useState<number>(1000);
 
   return (
     <div className="container">
@@ -41,22 +28,13 @@ const App: React.FC = () => {
           return (
             <div className="singleFloorContainer">
               {currentFloor == floorNumber ? (
-                <div className="upDownButtons">
-                  <p
-                    onClick={() => {
-                      changeFloor(floorNumber, "up");
-                    }}
-                  >
-                    Up
-                  </p>
-                  <p
-                    onClick={() => {
-                      changeFloor(floorNumber, "down");
-                    }}
-                  >
-                    Down
-                  </p>
-                </div>
+                <>
+                  <UpAndDown
+                    setCurrentFloor={setCurrentFloor}
+                    floorNumber={floorNumber}
+                    delayFloor={delayFloor}
+                  />
+                </>
               ) : (
                 <div></div>
               )}
