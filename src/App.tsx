@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import UpAndDown from "./components/UpAndDown";
+import NumberBtns from "./components/NumberBtns";
 
 interface Floor {
   floorNum: number;
@@ -10,12 +11,12 @@ interface Floor {
 const App: React.FC = () => {
   // All floors
   const floors: Floor[] = [
-    { floorNum: 0 },
-    { floorNum: 1 },
-    { floorNum: 2 },
-    { floorNum: 3 },
-    { floorNum: 4 },
     { floorNum: 5 },
+    { floorNum: 4 },
+    { floorNum: 3 },
+    { floorNum: 2 },
+    { floorNum: 1 },
+    { floorNum: 0 },
   ];
 
   // Current floor
@@ -26,21 +27,23 @@ const App: React.FC = () => {
   return (
     <div className="container">
       <h1>React Programming Assignment</h1>
+
       <div className="elevatorContainer">
-        {floors.reverse().map((floor: Floor, index: number) => {
+        {floors.map((floor: Floor, index: number) => {
           const floorNumber = floor.floorNum;
           return (
             <div className="singleFloorContainer">
               {currentFloor == floorNumber ? (
-                <>
+                <React.Fragment>
                   <UpAndDown
                     setCurrentFloor={setCurrentFloor}
                     floorNumber={floorNumber}
                     delayFloor={delayFloor}
                   />
-                </>
+                  <NumberBtns floors={floors} />
+                </React.Fragment>
               ) : (
-                ""
+                <div></div>
               )}
               <div
                 className={

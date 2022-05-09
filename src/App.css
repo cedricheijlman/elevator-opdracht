@@ -54,3 +54,24 @@
 .current {
   background-color: green !important;
 }
+
+.numberBtnsContainer {
+  position: absolute;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.floorNumber {
+  font-size: 14px;
+
+  background-color: rgb(126, 131, 205);
+  border-radius: 50%;
+  font-weight: 600;
+  padding: 3px 5px;
+  color: white;
+  margin: 1px 0;
+  cursor: pointer;
+  z-index: 99;
+}

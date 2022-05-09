@@ -15,10 +15,12 @@ const UpAndDown: React.FC<Props> = ({
   // to prevent user from going up and down the same time.
   const [loading, setLoading] = useState<boolean>(false);
 
-  // -------------------------- //
   // Change floor up and down //
   const changeFloor = (floorNum: number, action: string) => {
+    // Floor number
     const oldFloorNum = floorNum;
+
+    // If up
     if (action == "up" && floorNum < 5 && !loading) {
       setLoading(true);
       setTimeout(() => {
@@ -27,6 +29,7 @@ const UpAndDown: React.FC<Props> = ({
       }, delayFloor);
     }
 
+    // If down
     if (action == "down" && floorNum > 0 && !loading) {
       setLoading(true);
       setTimeout(() => {
