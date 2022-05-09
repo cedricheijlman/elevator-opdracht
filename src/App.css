@@ -7,6 +7,12 @@
   justify-content: center;
 }
 
+.container h1 {
+  margin-bottom: 35px;
+  font-weight: 300;
+  color: #34495e;
+}
+
 .singleFloorContainer {
   display: flex;
   align-items: center;
@@ -20,19 +26,29 @@
 }
 
 .upDownButtons p {
-  margin: 5px 0;
+  margin: 6px 0;
+  background-color: rgba(217, 217, 217, 0.51);
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 5px 7px;
+  border-radius: 7px;
+  font-weight: 500;
+
   cursor: pointer;
 }
 
 .singleFloor {
-  margin-left: 100px !important;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-left: 120px !important;
   border-radius: 10px;
   margin: 8px 0;
   background-color: #34495e;
-  padding: 30px 35px;
+  padding: 25px 35px;
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 600;
+  font-size: 23px;
 }
 
 .current {

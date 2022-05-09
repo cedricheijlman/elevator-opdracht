@@ -25,7 +25,7 @@ const App: React.FC = () => {
 
   return (
     <div className="container">
-      <h1>Elevator</h1>
+      <h1>React Programming Assignment</h1>
       <div className="elevatorContainer">
         {floors.reverse().map((floor: Floor, index: number) => {
           const floorNumber = floor.floorNum;
@@ -40,7 +40,7 @@ const App: React.FC = () => {
                   />
                 </>
               ) : (
-                <div></div>
+                ""
               )}
               <div
                 className={

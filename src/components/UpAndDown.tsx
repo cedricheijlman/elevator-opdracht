@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 interface Props {
   floorNumber: number;
@@ -11,18 +12,25 @@ const UpAndDown: React.FC<Props> = ({
   delayFloor,
   setCurrentFloor,
 }) => {
+  // to prevent user from going up and down the same time.
+  const [loading, setLoading] = useState<boolean>(false);
+
   // -------------------------- //
   // Change floor up and down //
-  const changeFloor = (floorNum: number, action: string): void => {
+  const changeFloor = (floorNum: number, action: string) => {
     const oldFloorNum = floorNum;
-    if (action == "up" && floorNum < 5) {
+    if (action == "up" && floorNum < 5 && !loading) {
+      setLoading(true);
       setTimeout(() => {
+        setLoading(false);
         setCurrentFloor(oldFloorNum + 1);
       }, delayFloor);
     }
 
-    if (action == "down" && floorNum > 0) {
+    if (action == "down" && floorNum > 0 && !loading) {
+      setLoading(true);
       setTimeout(() => {
+        setLoading(false);
         setCurrentFloor(oldFloorNum - 1);
       }, delayFloor);
     }
