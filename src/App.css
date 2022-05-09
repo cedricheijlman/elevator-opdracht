@@ -7,9 +7,6 @@
   justify-content: center;
 }
 
-.elevatorContainer {
-}
-
 .singleFloorContainer {
   display: flex;
   align-items: center;

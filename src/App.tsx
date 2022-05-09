@@ -3,9 +3,13 @@ import logo from "./logo.svg";
 import "./App.css";
 import UpAndDown from "./components/UpAndDown";
 
+interface Floor {
+  floorNum: number;
+}
+
 const App: React.FC = () => {
   // All floors
-  const floors: Object[] = [
+  const floors: Floor[] = [
     { floorNum: 0 },
     { floorNum: 1 },
     { floorNum: 2 },
@@ -23,7 +27,7 @@ const App: React.FC = () => {
     <div className="container">
       <h1>Elevator</h1>
       <div className="elevatorContainer">
-        {floors.reverse().map((floor: any) => {
+        {floors.reverse().map((floor: Floor, index: number) => {
           const floorNumber = floor.floorNum;
           return (
             <div className="singleFloorContainer">
