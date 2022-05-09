@@ -40,7 +40,10 @@ const App: React.FC = () => {
                     floorNumber={floorNumber}
                     delayFloor={delayFloor}
                   />
-                  <NumberBtns floors={floors} />
+                  <NumberBtns
+                    setCurrentFloor={setCurrentFloor}
+                    floors={floors}
+                  />
                 </React.Fragment>
               ) : (
                 <div></div>

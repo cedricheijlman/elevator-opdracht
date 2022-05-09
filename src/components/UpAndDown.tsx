@@ -4,7 +4,7 @@ import { useState } from "react";
 interface Props {
   floorNumber: number;
   delayFloor: number;
-  setCurrentFloor: (newFloorNum: number) => void;
+  setCurrentFloor: (newFloorNumber: number) => void;
 }
 
 const UpAndDown: React.FC<Props> = ({
@@ -16,25 +16,25 @@ const UpAndDown: React.FC<Props> = ({
   const [loading, setLoading] = useState<boolean>(false);
 
   // Change floor up and down //
-  const changeFloor = (floorNum: number, action: string) => {
+  const changeFloor = (floorNumber: number, action: string) => {
     // Floor number
-    const oldFloorNum = floorNum;
+    const oldFloorNumber = floorNumber;
 
     // If up
-    if (action == "up" && floorNum < 5 && !loading) {
+    if (action == "up" && oldFloorNumber < 5 && !loading) {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-        setCurrentFloor(oldFloorNum + 1);
+        setCurrentFloor(oldFloorNumber + 1);
       }, delayFloor);
     }
 
     // If down
-    if (action == "down" && floorNum > 0 && !loading) {
+    if (action == "down" && oldFloorNumber > 0 && !loading) {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-        setCurrentFloor(oldFloorNum - 1);
+        setCurrentFloor(oldFloorNumber - 1);
       }, delayFloor);
     }
   };
