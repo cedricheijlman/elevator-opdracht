@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
+const App: React.FC = () => {
+  const [currentFloor, setCurrentFloor] = useState(0);
+
+  const floors: Object[] = [
+    { floorNum: 0 },
+    { floorNum: 1 },
+    { floorNum: 2 },
+    { floorNum: 3 },
+    { floorNum: 4 },
+    { floorNum: 5 },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Elevator</h1>
+      <div className="elevatorContainer">
+        {floors.reverse().map((floor: any) => {
+          return (
+            <div
+              className={
+                currentFloor == floor.floorNum
+                  ? "singleFloor current"
+                  : "singleFloor"
+              }
+            >
+              <p>{floor.floorNum}</p>
+              <div></div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
