@@ -8,13 +8,17 @@ interface Floor {
 
 interface Props {
   floors: Floor[];
+  clickedButtons: number[];
+  setClickedButtons: (array: any) => void;
   setCurrentFloor: (newFloorNumber: number) => void;
 }
 
-const NumberBtns: React.FC<Props> = ({ floors, setCurrentFloor }) => {
-  // Current Clicked Buttons
-  const [clickedButtons, setClickedButtons] = useState<any>([]);
-
+const NumberBtns: React.FC<Props> = ({
+  floors,
+  setCurrentFloor,
+  clickedButtons,
+  setClickedButtons,
+}) => {
   // handle change
   const handleClickButton = (floorNumber: number) => {
     setClickedButtons((oldVal: any) => [...oldVal, floorNumber]);

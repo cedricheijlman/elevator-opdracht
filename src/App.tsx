@@ -9,6 +9,8 @@ interface Floor {
 }
 
 const App: React.FC = () => {
+  // Current Clicked Buttons
+  const [clickedButtons, setClickedButtons] = useState<any>([]);
   // All floors
   const floors: Floor[] = [
     { floorNum: 5 },
@@ -41,6 +43,8 @@ const App: React.FC = () => {
                     delayFloor={delayFloor}
                   />
                   <NumberBtns
+                    clickedButtons={clickedButtons}
+                    setClickedButtons={setClickedButtons}
                     setCurrentFloor={setCurrentFloor}
                     floors={floors}
                   />
