@@ -34,7 +34,7 @@ const App: React.FC = () => {
         {floors.map((floor: Floor, index: number) => {
           const floorNumber = floor.floorNum;
           return (
-            <div className="singleFloorContainer">
+            <div key={index} className="singleFloorContainer">
               {currentFloor == floorNumber ? (
                 <React.Fragment>
                   <UpAndDown
@@ -43,6 +43,7 @@ const App: React.FC = () => {
                     delayFloor={delayFloor}
                   />
                   <NumberBtns
+                    currentFloor={currentFloor}
                     clickedButtons={clickedButtons}
                     setClickedButtons={setClickedButtons}
                     setCurrentFloor={setCurrentFloor}
