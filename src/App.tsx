@@ -26,6 +26,9 @@ const App: React.FC = () => {
   // Delay Floor Change in seconds
   const [delayFloor, setDelayFloor] = useState<number>(1000);
 
+  // Check if elevator isMoving
+  const [isMoving, setIsMoving] = useState<boolean>(false);
+
   return (
     <div className="container">
       <h1>React Programming Assignment</h1>
@@ -43,6 +46,8 @@ const App: React.FC = () => {
                     delayFloor={delayFloor}
                   />
                   <NumberBtns
+                    isMoving={isMoving}
+                    setIsMoving={setIsMoving}
                     currentFloor={currentFloor}
                     clickedButtons={clickedButtons}
                     setClickedButtons={setClickedButtons}

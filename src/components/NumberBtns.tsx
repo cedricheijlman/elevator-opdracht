@@ -8,9 +8,13 @@ interface Floor {
 
 interface Props {
   floors: Floor[];
-  clickedButtons: number[];
 
+  clickedButtons: number[];
   setClickedButtons: (array: any) => void;
+
+  isMoving: boolean;
+  setIsMoving: (newStatus: boolean) => void;
+
   currentFloor: number;
   setCurrentFloor: (newFloorNumber: number) => void;
 }
@@ -21,15 +25,28 @@ const NumberBtns: React.FC<Props> = ({
   setCurrentFloor,
   clickedButtons,
   setClickedButtons,
+  isMoving,
+  setIsMoving,
 }) => {
-  const [targetFloor, setTargetFloor] = useState<number>(0);
-  const [isMoving, setIsMoving] = useState<boolean>(false);
+  useEffect(() => {
+    if (isMoving && clickedButtons.length > 0) {
+      setTimeout(() => {
+        setCurrentFloor(clickedButtons[0]);
+        setClickedButtons((oldVal: any) =>
+          oldVal.filter((val: any) => val != oldVal[0])
+        );
+      }, 4000);
+    } else if (isMoving && clickedButtons.length == 0) {
+      setIsMoving(false);
+    }
+  }, [isMoving]);
 
   // handle change
   const handleClickButton = (floorNumber: number) => {
     setClickedButtons((oldVal: any) => [...oldVal, floorNumber]);
-
-    setIsMoving(true);
+    if (!isMoving) {
+      setIsMoving(true);
+    }
   };
 
   return (
