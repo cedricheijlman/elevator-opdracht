@@ -54,6 +54,7 @@ const NumberBtns: React.FC<Props> = ({
       .filter((floor: number) => floor < currentFloor)
       .sort((a: number, b: number) => b - a);
 
+    // if Direction is up
     if (direction == "up") {
       let newArr = goUp.concat(goDown);
       setCurrentFloor(newArr[0]);
@@ -62,6 +63,7 @@ const NumberBtns: React.FC<Props> = ({
       );
     }
 
+    // If direction is down
     if (direction == "down") {
       let newArr = goDown.concat(goUp);
       setCurrentFloor(newArr[0]);
@@ -70,6 +72,7 @@ const NumberBtns: React.FC<Props> = ({
       );
     }
 
+    // If no direction is set
     if (direction == "") {
       return array.sort((a: number, b: number) => {
         return Math.abs(currentFloor - a) - Math.abs(currentFloor - b);

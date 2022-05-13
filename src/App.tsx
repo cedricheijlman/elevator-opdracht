@@ -10,7 +10,7 @@ interface Floor {
 
 const App: React.FC = () => {
   // Current Clicked Buttons
-  const [clickedButtons, setClickedButtons] = useState<any>([]);
+  const [clickedButtons, setClickedButtons] = useState<number[]>([]);
   // All floors
   const floors: Floor[] = [
     { floorNum: 5 },
