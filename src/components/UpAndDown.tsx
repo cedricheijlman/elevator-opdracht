@@ -18,7 +18,7 @@ const UpAndDown: React.FC<Props> = ({
         className={direction == "up" && currentFloor !== 5 ? "selectedBtn" : ""}
         onClick={() => {
           if (currentFloor !== 5) {
-            setDirection(direction !== "up" ? "up" : "");
+            setDirection(direction !== "up" ? "up" : "down");
           }
         }}
       >
@@ -30,7 +30,7 @@ const UpAndDown: React.FC<Props> = ({
         }
         onClick={() => {
           if (currentFloor !== 0) {
-            setDirection(direction !== "down" ? "down" : "");
+            setDirection(direction !== "down" ? "down" : "up");
           }
         }}
       >

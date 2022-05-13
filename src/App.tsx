@@ -22,7 +22,7 @@ const App: React.FC = () => {
   ];
 
   // floor direction
-  const [direction, setDirection] = useState<string>("");
+  const [direction, setDirection] = useState<string>("up");
 
   // Current floor
   const [currentFloor, setCurrentFloor] = useState<number>(0);

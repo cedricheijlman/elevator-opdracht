@@ -71,13 +71,6 @@ const NumberBtns: React.FC<Props> = ({
         newArr.filter((val: number) => val != newArr[0])
       );
     }
-
-    // If no direction is set
-    if (direction == "") {
-      return array.sort((a: number, b: number) => {
-        return Math.abs(currentFloor - a) - Math.abs(currentFloor - b);
-      });
-    }
   };
 
   // handle change
