@@ -19,6 +19,7 @@ interface Props {
   setCurrentFloor: (newFloorNumber: number) => void;
 
   direction: string;
+  setDirection: (newDirection: string) => void;
 }
 
 const NumberBtns: React.FC<Props> = ({
@@ -30,11 +31,22 @@ const NumberBtns: React.FC<Props> = ({
   isMoving,
   setIsMoving,
   direction,
+  setDirection,
 }) => {
   let clickedButtonsLocalArr: number[] = clickedButtons;
 
   // every rerender
   useEffect(() => {
+    // check if lowest floor then switch direction
+    if (currentFloor == 0) {
+      setDirection("up");
+    }
+
+    // check if highest floor then switch direction
+    if (currentFloor == floors.length - 1) {
+      setDirection("down");
+    }
+
     if (isMoving && clickedButtons.length > 0) {
       setClickedButtons(clickedButtonsLocalArr);
       setTimeout(() => {

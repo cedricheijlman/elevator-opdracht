@@ -47,6 +47,7 @@ const App: React.FC = () => {
                     currentFloor={currentFloor}
                   />
                   <NumberBtns
+                    setDirection={setDirection}
                     direction={direction}
                     isMoving={isMoving}
                     setIsMoving={setIsMoving}
