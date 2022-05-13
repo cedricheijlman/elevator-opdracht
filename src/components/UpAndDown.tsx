@@ -2,54 +2,36 @@ import React from "react";
 import { useState } from "react";
 
 interface Props {
-  floorNumber: number;
-  delayFloor: number;
-  setCurrentFloor: (newFloorNumber: number) => void;
+  direction: string;
+  setDirection: (direction: string) => void;
+  currentFloor: number;
 }
 
 const UpAndDown: React.FC<Props> = ({
-  floorNumber,
-  delayFloor,
-  setCurrentFloor,
+  direction,
+  setDirection,
+  currentFloor,
 }) => {
-  // to prevent user from going up and down the same time.
-  const [loading, setLoading] = useState<boolean>(false);
-
-  // Change floor up and down //
-  const changeFloor = (floorNumber: number, action: string) => {
-    // Floor number
-    const oldFloorNumber = floorNumber;
-
-    // If up
-    if (action == "up" && oldFloorNumber < 5 && !loading) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setCurrentFloor(oldFloorNumber + 1);
-      }, delayFloor);
-    }
-
-    // If down
-    if (action == "down" && oldFloorNumber > 0 && !loading) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setCurrentFloor(oldFloorNumber - 1);
-      }, delayFloor);
-    }
-  };
   return (
     <div className="upDownButtons">
       <p
+        className={direction == "up" && currentFloor !== 5 ? "selectedBtn" : ""}
         onClick={() => {
-          changeFloor(floorNumber, "up");
+          if (currentFloor !== 5) {
+            setDirection(direction !== "up" ? "up" : "");
+          }
         }}
       >
         Up
       </p>
       <p
+        className={
+          direction == "down" && currentFloor !== 0 ? "selectedBtn" : ""
+        }
         onClick={() => {
-          changeFloor(floorNumber, "down");
+          if (currentFloor !== 0) {
+            setDirection(direction !== "down" ? "down" : "");
+          }
         }}
       >
         Down

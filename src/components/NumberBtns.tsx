@@ -17,6 +17,8 @@ interface Props {
 
   currentFloor: number;
   setCurrentFloor: (newFloorNumber: number) => void;
+
+  direction: string;
 }
 
 const NumberBtns: React.FC<Props> = ({
@@ -27,23 +29,59 @@ const NumberBtns: React.FC<Props> = ({
   setClickedButtons,
   isMoving,
   setIsMoving,
+  direction,
 }) => {
+  let clickedButtonsLocalArr = clickedButtons;
+
   useEffect(() => {
     if (isMoving && clickedButtons.length > 0) {
       setTimeout(() => {
-        setCurrentFloor(clickedButtons[0]);
-        setClickedButtons((oldVal: any) =>
-          oldVal.filter((val: any) => val != oldVal[0])
-        );
-      }, 4000);
+        sortArray(clickedButtonsLocalArr);
+      }, 5500);
     } else if (isMoving && clickedButtons.length == 0) {
       setIsMoving(false);
     }
   }, [isMoving]);
 
+  // sort arr to get nearest floor
+  const sortArray = (array: any) => {
+    let goUp = array
+      .filter((floor: number) => floor > currentFloor)
+      .sort((a: number, b: number) => a - b);
+    let goDown = array
+      .filter((floor: number) => floor < currentFloor)
+      .sort((a: number, b: number) => b - a);
+
+    if (direction == "up") {
+      let newArr = goUp.concat(goDown);
+      setCurrentFloor(newArr[0]);
+      return setClickedButtons(
+        newArr.filter((val: number) => val != newArr[0])
+      );
+    }
+
+    if (direction == "down") {
+      let newArr = goDown.concat(goUp);
+      setCurrentFloor(newArr[0]);
+      return setClickedButtons(
+        newArr.filter((val: number) => val != newArr[0])
+      );
+    }
+
+    if (direction == "") {
+      return array.sort((a: number, b: number) => {
+        return Math.abs(currentFloor - a) - Math.abs(currentFloor - b);
+      });
+    }
+  };
+
   // handle change
   const handleClickButton = (floorNumber: number) => {
-    setClickedButtons((oldVal: any) => [...oldVal, floorNumber]);
+    if (floorNumber != currentFloor) {
+      clickedButtonsLocalArr.push(floorNumber);
+      setClickedButtons([...clickedButtons, floorNumber]);
+    }
+
     if (!isMoving) {
       setIsMoving(true);
     }
@@ -59,11 +97,7 @@ const NumberBtns: React.FC<Props> = ({
             onClick={() => {
               handleClickButton(floorNumber);
             }}
-            className={
-              clickedButtons.includes(floorNumber)
-                ? "floorNumber include"
-                : "floorNumber"
-            }
+            className="floorNumber"
           >
             {floor.floorNum}
           </p>

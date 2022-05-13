@@ -21,10 +21,11 @@ const App: React.FC = () => {
     { floorNum: 0 },
   ];
 
+  // floor direction
+  const [direction, setDirection] = useState<string>("");
+
   // Current floor
   const [currentFloor, setCurrentFloor] = useState<number>(0);
-  // Delay Floor Change in seconds
-  const [delayFloor, setDelayFloor] = useState<number>(1000);
 
   // Check if elevator isMoving
   const [isMoving, setIsMoving] = useState<boolean>(false);
@@ -41,11 +42,12 @@ const App: React.FC = () => {
               {currentFloor == floorNumber ? (
                 <React.Fragment>
                   <UpAndDown
-                    setCurrentFloor={setCurrentFloor}
-                    floorNumber={floorNumber}
-                    delayFloor={delayFloor}
+                    direction={direction}
+                    setDirection={setDirection}
+                    currentFloor={currentFloor}
                   />
                   <NumberBtns
+                    direction={direction}
                     isMoving={isMoving}
                     setIsMoving={setIsMoving}
                     currentFloor={currentFloor}
