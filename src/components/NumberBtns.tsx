@@ -10,7 +10,7 @@ interface Props {
   floors: Floor[];
 
   clickedButtons: number[];
-  setClickedButtons: (array: any) => void;
+  setClickedButtons: (array: number[]) => void;
 
   isMoving: boolean;
   setIsMoving: (newStatus: boolean) => void;
@@ -31,20 +31,22 @@ const NumberBtns: React.FC<Props> = ({
   setIsMoving,
   direction,
 }) => {
-  let clickedButtonsLocalArr = clickedButtons;
+  let clickedButtonsLocalArr: number[] = clickedButtons;
 
+  // every rerender
   useEffect(() => {
     if (isMoving && clickedButtons.length > 0) {
+      setClickedButtons(clickedButtonsLocalArr);
       setTimeout(() => {
         sortArray(clickedButtonsLocalArr);
-      }, 5500);
+      }, 5000);
     } else if (isMoving && clickedButtons.length == 0) {
       setIsMoving(false);
     }
   }, [isMoving]);
 
-  // sort arr to get nearest floor
-  const sortArray = (array: any) => {
+  // sort arr to get to nearest floor
+  const sortArray = (array: number[]) => {
     let goUp = array
       .filter((floor: number) => floor > currentFloor)
       .sort((a: number, b: number) => a - b);
@@ -77,13 +79,12 @@ const NumberBtns: React.FC<Props> = ({
 
   // handle change
   const handleClickButton = (floorNumber: number) => {
-    if (floorNumber != currentFloor) {
-      clickedButtonsLocalArr.push(floorNumber);
-      setClickedButtons([...clickedButtons, floorNumber]);
-    }
-
     if (!isMoving) {
       setIsMoving(true);
+    }
+
+    if (floorNumber != currentFloor) {
+      clickedButtonsLocalArr.push(floorNumber);
     }
   };
 
